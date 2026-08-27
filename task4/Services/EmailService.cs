@@ -12,7 +12,7 @@
         public async Task SendEmailAsync(string toEmail, string confirmLink)
         {
             string apiKey = _configuration["BrevoApiKey"] ?? Environment.GetEnvironmentVariable("BREVO_API_KEY") ?? "";
-            string senderEmail = "egorkon666@gmail.com";
+            string senderEmail = "d4rk3s@icloud.com";
 
             using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("api-key", apiKey);
@@ -21,8 +21,8 @@
             {
                 sender = new { name = "The App Support", email = senderEmail },
                 to = new[] { new { email = toEmail } },
-                subject = "Registration Confirmation",
-                htmlContent = $"<h3>Welcome!</h3><p>To activate your account, please click the link below:</p><a href='{confirmLink}'>{confirmLink}</a>"
+                subject = "Confirm your account",
+                htmlContent = $"<p>Welcome! Please confirm your account by clicking <a href='{confirmLink}'>here</a>.</p>",
             };
 
             var response = await httpClient.PostAsJsonAsync("https://api.brevo.com/v3/smtp/email", payload);

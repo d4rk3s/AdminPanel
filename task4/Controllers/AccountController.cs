@@ -182,8 +182,7 @@ namespace task4.Controllers
                 return View();
             }
 
-            var minskTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Minsk");
-            user.LastLoginAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, minskTimeZone);
+            user.LastLoginAt = DateTime.UtcNow;
             await _db.SaveChangesAsync();
 
             var claims = new List<Claim>
